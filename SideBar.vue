@@ -77,9 +77,13 @@
       href="#"
       class=" sidebar-hamburger"
       @click="changeStatutSideBar"
+      v-if="CroixRouge"
       ><span style="font-size:1.5em; color:#343a40;cursor: pointer">
         <i class="fa fa-bars"></i></span
     ></b-navbar-brand>
+    <span class="croix-rouge" @click="changeStatutSideBar"
+      ><i class="fas fa-times"></i
+    ></span>
   </div>
 </template>
 
@@ -560,7 +564,7 @@ export default {
       rail: { size: "15px" },
       bar: { background: "#ffffff", opacity: 0.4, minSize: 0.4 },
       scrollButton: {
-        enable: true,
+        enable: false,
         background: "#cecece",
         opacity: 1,
         step: 180,
@@ -571,6 +575,13 @@ export default {
   }),
 
   computed: {
+    CroixRouge() {
+      if (this.sideStatus == "side-close") {
+        return true;
+      } else {
+        return false;
+      }
+    },
     check() {
       var currentUrl = window.location.pathname;
       var newe = this.newMenu;
@@ -696,6 +707,13 @@ export default {
 <style lang="scss">
 .menu-vuejs {
   transition: all 0.2s;
+  .croix-rouge {
+    position: relative;
+    font-size: 1.7rem;
+    color: crimson;
+    top: 8px;
+    right: 40px;
+  }
   .sidebar {
     min-height: 100vh;
     background-color: black;
