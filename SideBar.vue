@@ -6,7 +6,7 @@
           <img :src="urlImageUser" alt="" class="rounded-circle" />
           <div class="header">
             <a href="#">
-              <h4>{{ nameUser }}</h4>
+              <h4>{{ nameUser_display }}</h4>
             </a>
             <p><i class="fa fa-circle text-success mr-1"></i>connecté</p>
           </div>
@@ -20,16 +20,18 @@
             @click="activeNav(i)"
           >
             <div class="sidebar__link d-flex justify-content-between">
-              <a :href="nav.relative">
-                <div class="titre-link">
-                  <span v-if="nav.options">
-                    <i
-                      class="text-success"
-                      :class="[nav.options.fa_icon_prefix, nav.options.fa_icon]"
-                    ></i>
-                  </span>
-                  {{ nav.title }}
-                </div>
+              <a :href="nav.relative" class="titre-link">
+                <span v-if="nav.options.fa_icon || nav.options.wbu_fa_icon">
+                  <i
+                    class="icone"
+                    :class="[
+                      nav.options.fa_icon_prefix,
+                      nav.options.fa_icon,
+                      nav.options.wbu_fa_icon
+                    ]"
+                  ></i>
+                </span>
+                {{ nav.title }}
               </a>
               <span @click="dropdownActive(i)">
                 <i class="fa fa-angle-down drop" v-if="dropdownlength(i)"></i>
@@ -45,18 +47,18 @@
                     :key="index"
                   >
                     <i
-                      v-if="drop.options.fa_icon"
-                      class="text-success"
+                      v-if="drop.options.fa_icon || drop.options.wbu_fa_icon"
+                      class="icone"
                       :class="[
                         drop.options.fa_icon_prefix,
-                        drop.options.fa_icon
+                        drop.options.fa_icon,
+                        drop.options.wbu_fa_icon
                       ]"
                     ></i>
                     <a
                       class="ml-2"
                       :href="drop.relative"
                       @click="linkActive(i, index)"
-                      :style="drop.active ? 'color: rgb(97, 220, 97);' : ''"
                       >{{ drop.title }}</a
                     >
                   </li>
@@ -148,275 +150,47 @@ export default {
   data: () => ({
     json: [
       {
-        key: "5b296ded-b082-4ab9-b831-d427b2a5b1f9",
-        title: "Listes des emplois",
-        description: null,
-        uri: "recherche-emploi",
-        alias: "recherche-emploi",
+        key: "multistepvalidation.my_account",
+        title: "Tableau de bord",
+        description: "",
+        uri: "user/1",
+        alias: "user/1",
         external: false,
-        absolute: "http://airportlome.kksa/recherche-emploi",
-        relative: "/recherche-emploi",
+        absolute: "http://airportlome.kksa/user/1",
+        relative: "/user/1",
         existing: true,
-        weight: "-49",
+        weight: "-51",
         expanded: false,
         enabled: true,
-        uuid: null,
+        uuid: "9e8251c7-1c11-4b08-852e-337dc28bd93c",
         options: {
-          query: []
-        }
-      },
-      {
-        key: "1262ed52-fd99-4855-bf27-6c5051977b67",
-        title: "Publier un emploi",
-        description: null,
-        uri: "multistepvalidation/CheckRoute/emploi",
-        alias: "multistepvalidation/CheckRoute/emploi",
-        external: false,
-        absolute:
-          "http://airportlome.kksa/multistepvalidation/CheckRoute/emploi",
-        relative: "/multistepvalidation/CheckRoute/emploi",
-        existing: true,
-        weight: "-47",
-        expanded: false,
-        enabled: true,
-        uuid: null,
-        options: {
-          query: {
-            go: "/node/add/jobs"
-          }
-        }
-      },
-      {
-        key: "bf68be73-1b26-437f-b895-9de0f4ac4d9b",
-        title: "Espace Employeurs",
-        description: null,
-        uri: "employeur",
-        alias: "employeur",
-        external: false,
-        absolute: "http://airportlome.kksa/employeur",
-        relative: "/employeur",
-        existing: true,
-        weight: "-46",
-        expanded: false,
-        enabled: true,
-        uuid: null,
-        options: {
-          query: []
-        }
-      },
-      {
-        key: "bfa5735f-e8ed-44c5-9efe-9adca7ee260e",
-        title: "Espace Candidat",
-        description: null,
-        uri: "candidats",
-        alias: "candidats",
-        external: false,
-        absolute: "http://airportlome.kksa/candidats",
-        relative: "/candidats",
-        existing: true,
-        weight: "-45",
-        expanded: false,
-        enabled: true,
-        uuid: null,
-        options: {
-          query: []
-        }
-      },
-      {
-        key: "30848330-516e-4fa5-a5b8-1afa98965cd7",
-        title: "Publier un CV",
-        description: null,
-        uri: "multistepvalidation/CheckRoute/identification_du_candidat",
-        alias: "multistepvalidation/CheckRoute/identification_du_candidat",
-        external: false,
-        absolute:
-          "http://airportlome.kksa/multistepvalidation/CheckRoute/identification_du_candidat",
-        relative: "/multistepvalidation/CheckRoute/identification_du_candidat",
-        existing: true,
-        weight: "-44",
-        expanded: false,
-        enabled: true,
-        uuid: null,
-        options: {
-          query: {
-            go: "identification_du_candidat"
-          }
-        }
-      },
-      {
-        key: "8f40c479-9d44-4ae1-9b91-cbc2dd8de1e0",
-        title: "Liste des cv",
-        description: null,
-        uri: "",
-        alias: "",
-        external: false,
-        absolute: "http://airportlome.kksa/",
-        relative: "/",
-        existing: true,
-        weight: "-43",
-        expanded: false,
-        enabled: true,
-        uuid: null,
-        options: {
-          fa_icon: "",
-          fa_icon_prefix: "fa",
-          fa_icon_tag: "i",
-          fa_icon_appearance: "before"
-        }
-      },
-      {
-        key: "aaf04980-61b3-4cbe-b49c-74539cb253ee",
-        title: "Actualités",
-        description: null,
-        uri: "",
-        alias: "",
-        external: false,
-        absolute: "http://airportlome.kksa/",
-        relative: "/",
-        existing: true,
-        weight: "-42",
-        expanded: false,
-        enabled: true,
-        uuid: null,
-        options: []
-      },
-      {
-        key: "6b19adea-0092-46e2-9890-b7ae4cb411f6",
-        title: "Formations",
-        description: null,
-        uri: "",
-        alias: "",
-        external: false,
-        absolute: "http://airportlome.kksa/",
-        relative: "/",
-        existing: true,
-        weight: "-41",
-        expanded: false,
-        enabled: true,
-        uuid: null,
-        options: {
-          fa_icon: "",
-          fa_icon_prefix: "fa",
-          fa_icon_tag: "i",
+          wbu_fa_icon: "fas fa-tachometer-alt",
           fa_icon_appearance: "before"
         },
         below: [
           {
-            key: "33d1913c-f2fe-479e-b420-74cba7f86e1d",
-            title: "Liste des formations",
+            key: "b2211112-60ed-4e28-8f98-38bf03e128dc",
+            title: "Proposer  un emploi",
             description: null,
-            uri: "liste-des-formations",
-            alias: "liste-des-formations",
+            uri: "node/add/jobs",
+            alias: "node/add/jobs",
             external: false,
-            absolute: "http://airportlome.kksa/liste-des-formations",
-            relative: "/liste-des-formations",
+            absolute: "http://airportlome.kksa/node/add/jobs",
+            relative: "/node/add/jobs",
             existing: true,
             weight: "-50",
             expanded: false,
             enabled: true,
-            uuid: null,
+            uuid: "b5d88bae-d4c9-4273-8f09-540914769c95",
             options: {
-              fa_icon: "",
-              fa_icon_prefix: "fa",
-              fa_icon_tag: "i",
-              fa_icon_appearance: "before",
-              query: []
-            }
-          }
-        ]
-      },
-      {
-        key: "b68348ef-862c-4c37-a36a-cb235d13dc3c",
-        title: "Liste des entreprises",
-        description: null,
-        uri: "liste-des-entreprises",
-        alias: "liste-des-entreprises",
-        external: false,
-        absolute: "http://airportlome.kksa/liste-des-entreprises",
-        relative: "/liste-des-entreprises",
-        existing: true,
-        weight: "-39",
-        expanded: false,
-        enabled: true,
-        uuid: null,
-        options: {
-          fa_icon: "",
-          fa_icon_prefix: "fa",
-          fa_icon_tag: "i",
-          fa_icon_appearance: "before",
-          query: []
-        },
-        below: [
-          {
-            key: "922a156a-181c-4cc3-a301-9e5e8e35f97d",
-            title: "Ajouter son entreprise",
-            description: null,
-            uri: "node/add/prestataires",
-            alias: "node/add/prestataires",
-            external: false,
-            absolute: "http://airportlome.kksa/node/add/prestataires",
-            relative: "/node/add/prestataires",
-            existing: true,
-            weight: "-50",
-            expanded: false,
-            enabled: true,
-            uuid: "18d668ff-5bae-4b3e-ad0a-94ff73012d7d",
-            options: {
-              fa_icon: "",
-              fa_icon_prefix: "fa",
-              fa_icon_tag: "i",
-              fa_icon_appearance: "before",
-              query: []
-            }
-          }
-        ]
-      },
-      {
-        key: "9838573b-3a46-412d-bf76-88a961666641",
-        title: "Appels d'offre",
-        description: null,
-        uri: "",
-        alias: "",
-        external: false,
-        absolute: "http://airportlome.kksa/",
-        relative: "/",
-        existing: true,
-        weight: "-37",
-        expanded: false,
-        enabled: true,
-        uuid: null,
-        options: {
-          fa_icon: "",
-          fa_icon_prefix: "fa",
-          fa_icon_tag: "i",
-          fa_icon_appearance: "before"
-        },
-        below: [
-          {
-            key: "fd88d949-0078-4541-aebf-bf5e64ec4e6a",
-            title: "liste des appels d offre",
-            description: null,
-            uri: "liste-des-appels-d-offres",
-            alias: "liste-des-appels-d-offres",
-            external: false,
-            absolute: "http://airportlome.kksa/liste-des-appels-d-offres",
-            relative: "/liste-des-appels-d-offres",
-            existing: true,
-            weight: "-50",
-            expanded: false,
-            enabled: true,
-            uuid: null,
-            options: {
-              fa_icon: "",
-              fa_icon_prefix: "fa",
-              fa_icon_tag: "i",
+              wbu_fa_icon: "far fa-address-book",
               fa_icon_appearance: "before",
               query: []
             }
           },
           {
-            key: "d28409fc-ecf9-4058-a94f-59ea36b1b222",
-            title: "Ajouter un appel d'offre",
+            key: "1ad90ed3-b8c3-4c32-961b-d1cafee765fd",
+            title: "Proposer un appel d'offre",
             description: null,
             uri: "node/add/appel_d_offres",
             alias: "node/add/appel_d_offres",
@@ -429,122 +203,333 @@ export default {
             enabled: true,
             uuid: "a76f3c4e-3985-46b1-a7db-4a5b7ce6dc68",
             options: {
-              query: []
-            }
-          }
-        ]
-      },
-      {
-        key: "dfce21e8-f002-4cdc-8a50-9af2095e6b75",
-        title: "Vendre son entreprise",
-        description: null,
-        uri: "",
-        alias: "",
-        external: false,
-        absolute: "http://airportlome.kksa/",
-        relative: "/",
-        existing: true,
-        weight: "-36",
-        expanded: false,
-        enabled: true,
-        uuid: null,
-        options: [],
-        below: [
-          {
-            key: "de62c7fa-5163-4473-93a3-69ecb016dffc",
-            title: "Liste des entreprises à vendre",
-            description: null,
-            uri: "liste-des-entreprises",
-            alias: "liste-des-entreprises",
-            external: false,
-            absolute: "http://airportlome.kksa/liste-des-entreprises",
-            relative: "/liste-des-entreprises",
-            existing: true,
-            weight: "-50",
-            expanded: false,
-            enabled: true,
-            uuid: null,
-            options: {
+              wbu_fa_icon: "fas fa-network-wired",
+              fa_icon_appearance: "before",
               query: []
             }
           },
           {
-            key: "4061eae5-aa7f-453f-8174-14bf59bf38aa",
-            title: "Ajouter une entreprise à vendre",
+            key: "b4c736a1-e41d-4df0-ac08-9f8081dbaabb",
+            title: "Proposer une formations",
             description: null,
-            uri: "multistepvalidation/CheckRoute/emploi",
-            alias: "multistepvalidation/CheckRoute/emploi",
+            uri: "node/add/formations",
+            alias: "node/add/formations",
             external: false,
-            absolute:
-              "http://airportlome.kksa/multistepvalidation/CheckRoute/emploi",
-            relative: "/multistepvalidation/CheckRoute/emploi",
+            absolute: "http://airportlome.kksa/node/add/formations",
+            relative: "/node/add/formations",
             existing: true,
-            weight: "-49",
+            weight: "-48",
+            expanded: false,
+            enabled: true,
+            uuid: "03c6bd77-f1db-40de-a0fd-649146faf9b6",
+            options: {
+              wbu_fa_icon: "fas fa-graduation-cap",
+              fa_icon_appearance: "before",
+              query: []
+            }
+          },
+          {
+            key: "762b76fb-fc61-4e75-abb8-8357fc7aeb60",
+            title: "Proposer un hôtel",
+            description: null,
+            uri: "node/add/hotel",
+            alias: "node/add/hotel",
+            external: false,
+            absolute: "http://airportlome.kksa/node/add/hotel",
+            relative: "/node/add/hotel",
+            existing: true,
+            weight: "-46",
+            expanded: false,
+            enabled: true,
+            uuid: "b01e8abc-de12-401f-b7ce-0df6a3df2325",
+            options: {
+              wbu_fa_icon: "fas fa-school ",
+              fa_icon_appearance: "before",
+              query: []
+            }
+          },
+          {
+            key: "a3fbe589-c041-44d8-bb74-ec9bc57a0822",
+            title: "Proposer  une publicité",
+            description: null,
+            uri: "node/add/publicite",
+            alias: "node/add/publicite",
+            external: false,
+            absolute: "http://airportlome.kksa/node/add/publicite",
+            relative: "/node/add/publicite",
+            existing: true,
+            weight: "-45",
+            expanded: false,
+            enabled: true,
+            uuid: "9ee019fc-8b9d-4608-933a-2da221f6baa6",
+            options: {
+              wbu_fa_icon: "fas fa-ad",
+              fa_icon_appearance: "before",
+              query: []
+            }
+          },
+          {
+            key: "966cbab7-5937-433b-b0f1-22a518930a0c",
+            title: "Mes payements",
+            description: null,
+            uri: "multistepvalidation/payements",
+            alias: "multistepvalidation/payements",
+            external: false,
+            absolute: "http://airportlome.kksa/multistepvalidation/payements",
+            relative: "/multistepvalidation/payements",
+            existing: true,
+            weight: "-44",
             expanded: false,
             enabled: true,
             uuid: null,
             options: {
-              query: {
-                go: "/node/add/vendre_son_entreprise"
-              }
+              wbu_fa_icon: "fas fa-euro-sign",
+              fa_icon_appearance: "before",
+              query: []
+            }
+          },
+          {
+            key: "multistepvalidation.user_cv",
+            title: "Ajouter mon cv",
+            description: "",
+            uri: "user/1/identification_du_candidat",
+            alias: "user/1/identification_du_candidat",
+            external: false,
+            absolute:
+              "http://airportlome.kksa/user/1/identification_du_candidat",
+            relative: "/user/1/identification_du_candidat",
+            existing: true,
+            weight: "-42",
+            expanded: false,
+            enabled: true,
+            uuid: "9e8251c7-1c11-4b08-852e-337dc28bd93c",
+            options: {
+              wbu_fa_icon: "far fa-address-book",
+              fa_icon_appearance: "before"
+            }
+          },
+          {
+            key: "1c8008db-2f89-452a-b2bd-e5bd4c4edaf9",
+            title: "Postuler a des emplois",
+            description: null,
+            uri: "recherche-emploi",
+            alias: "recherche-emploi",
+            external: false,
+            absolute: "http://airportlome.kksa/recherche-emploi",
+            relative: "/recherche-emploi",
+            existing: true,
+            weight: "-41",
+            expanded: false,
+            enabled: true,
+            uuid: null,
+            options: {
+              wbu_fa_icon: "far fa-edit",
+              fa_icon_appearance: "before",
+              query: []
+            }
+          },
+          {
+            key: "9e629704-f775-486c-804c-4db489ed645d",
+            title: "Liste des emplois postules",
+            description: null,
+            uri: "multistepvalidation/listes-emploies-postules",
+            alias: "multistepvalidation/listes-emploies-postules",
+            external: false,
+            absolute:
+              "http://airportlome.kksa/multistepvalidation/listes-emploies-postules",
+            relative: "/multistepvalidation/listes-emploies-postules",
+            existing: true,
+            weight: "-40",
+            expanded: false,
+            enabled: true,
+            uuid: null,
+            options: {
+              wbu_fa_icon: "fas fa-user-edit",
+              fa_icon_appearance: "before",
+              query: []
+            }
+          },
+          {
+            key: "2fc88ddc-cf72-459f-9abe-d6ec475118cd",
+            title: "Participer a des formations",
+            description: null,
+            uri: "liste-des-formations",
+            alias: "liste-des-formations",
+            external: false,
+            absolute: "http://airportlome.kksa/liste-des-formations",
+            relative: "/liste-des-formations",
+            existing: true,
+            weight: "-39",
+            expanded: false,
+            enabled: true,
+            uuid: null,
+            options: {
+              wbu_fa_icon: "fas fa-layer-group",
+              fa_icon_appearance: "before",
+              query: []
+            }
+          },
+          {
+            key: "657ce10b-766f-44b9-81ef-4ceb4a74c27e",
+            title: "Activer des alertes pour recevoir les publications",
+            description: null,
+            uri: "multistepvalidation/notifications-alerts",
+            alias: "multistepvalidation/notifications-alerts",
+            external: false,
+            absolute:
+              "http://airportlome.kksa/multistepvalidation/notifications-alerts",
+            relative: "/multistepvalidation/notifications-alerts",
+            existing: true,
+            weight: "-38",
+            expanded: false,
+            enabled: true,
+            uuid: null,
+            options: {
+              wbu_fa_icon: "fas fa-user-clock",
+              fa_icon_appearance: "before",
+              query: []
+            }
+          },
+          {
+            key: "e68b5a4f-c06c-4ebc-a716-c1f5ada3904b",
+            title: "proposer des services comme prestataire",
+            description: null,
+            uri: "node/add/prestataires",
+            alias: "node/add/prestataires",
+            external: false,
+            absolute: "http://airportlome.kksa/node/add/prestataires",
+            relative: "/node/add/prestataires",
+            existing: true,
+            weight: "-37",
+            expanded: false,
+            enabled: true,
+            uuid: "18d668ff-5bae-4b3e-ad0a-94ff73012d7d",
+            options: {
+              wbu_fa_icon: "fas fa-server",
+              fa_icon_appearance: "before",
+              query: []
+            }
+          },
+          {
+            key: "e3b1d40d-eb4c-4862-927f-0925cfba3973",
+            title: "Vendre son entreprise",
+            description: null,
+            uri: "node/add/vendre_son_entreprise",
+            alias: "node/add/vendre_son_entreprise",
+            external: false,
+            absolute: "http://airportlome.kksa/node/add/vendre_son_entreprise",
+            relative: "/node/add/vendre_son_entreprise",
+            existing: true,
+            weight: "-36",
+            expanded: false,
+            enabled: true,
+            uuid: "a1f11dbf-dfb2-4e66-9bd2-73c97ad75ec6",
+            options: {
+              wbu_fa_icon: "fas fa-store-alt",
+              fa_icon_appearance: "before",
+              query: []
+            }
+          },
+          {
+            key: "73df5571-d1d8-4de9-810d-9c55713084f2",
+            title: "Facturation",
+            description: null,
+            uri: "multistepvalidation/facturation",
+            alias: "multistepvalidation/facturation",
+            external: false,
+            absolute: "http://airportlome.kksa/multistepvalidation/facturation",
+            relative: "/multistepvalidation/facturation",
+            existing: true,
+            weight: "-35",
+            expanded: false,
+            enabled: true,
+            uuid: null,
+            options: {
+              wbu_fa_icon: "fas fa-id-card",
+              fa_icon_appearance: "before",
+              query: []
+            }
+          },
+          {
+            key: "user.logout",
+            title: "Se déconnecter",
+            description: "",
+            uri: "user/logout",
+            alias: "user/logout",
+            external: false,
+            absolute: "http://airportlome.kksa/user/logout",
+            relative: "/user/logout",
+            existing: true,
+            weight: "-33",
+            expanded: false,
+            enabled: true,
+            uuid: null,
+            options: {
+              wbu_fa_icon: "fas fa-power-off",
+              fa_icon_appearance: "before"
             }
           }
         ]
       },
       {
-        key: "b1bd6da5-eaaf-4cf4-a002-f4e08c16563a",
-        title: "Hotels",
+        key: "f7777d8b-687d-4887-bb84-0aa15f3edd0e",
+        title: "Se connecter",
         description: null,
-        uri: "liste-des-hotels",
-        alias: "liste-des-hotels",
+        uri: "user/login",
+        alias: "user/login",
         external: false,
-        absolute: "http://airportlome.kksa/liste-des-hotels",
-        relative: "/liste-des-hotels",
+        absolute: "http://airportlome.kksa/user/login",
+        relative: "/user/login",
         existing: true,
-        weight: "-35",
+        weight: "0",
         expanded: false,
         enabled: true,
+        below: [
+          {
+            key: "user.logout",
+            title: "Se necter",
+            description: "",
+            uri: "user/logout",
+            alias: "user/logout",
+            external: false,
+            absolute: "http://airportlome.kksa/user/logout",
+            relative: "/user/logo",
+            existing: true,
+            weight: "-33",
+            expanded: false,
+            enabled: true,
+            uuid: null,
+            options: {
+              wbu_fa_icon: "fas fa-power-off",
+              fa_icon_appearance: "before"
+            }
+          },
+          {
+            key: "user.logout",
+            title: "Se déconnecter",
+            description: "",
+            uri: "user/logout",
+            alias: "user/logout",
+            external: false,
+            absolute: "http://airportlome.kksa/user/logout",
+            relative: "/user/logouto",
+            existing: true,
+            weight: "-33",
+            expanded: false,
+            enabled: true,
+            uuid: null,
+            options: {
+              wbu_fa_icon: "fas fa-power-off",
+              fa_icon_appearance: "before"
+            }
+          }
+        ],
         uuid: null,
         options: {
           query: []
         }
-      },
-      {
-        key: "45f7eaf4-c2f3-4b8c-9bfe-a9bc810f2e13",
-        title: "Publicité",
-        description: null,
-        uri: "liste-des-publicite",
-        alias: "liste-des-publicite",
-        external: false,
-        absolute: "http://airportlome.kksa/liste-des-publicite",
-        relative: "/liste-des-publicite",
-        existing: true,
-        weight: "-34",
-        expanded: false,
-        enabled: true,
-        uuid: null,
-        options: {
-          query: []
-        }
-      },
-      {
-        key: "4ebb167c-5973-458b-a937-6ee6ddeb58d8",
-        title: "Prix",
-        description: null,
-        uri: "node/507",
-        alias: "page-de-base/prix",
-        external: false,
-        absolute: "http://airportlome.kksa/page-de-base/prix",
-        relative: "/page-de-base/prix",
-        existing: true,
-        weight: "-33",
-        expanded: false,
-        enabled: true,
-        uuid: "b26ffefb-2b98-49c6-88de-e8f3f6fddbee",
-        options: []
       }
     ],
-
     sideStatus: "side-close"
   }),
 
@@ -556,12 +541,14 @@ export default {
         newe.forEach((el, i) => {
           if (el.relative == currentUrl) {
             newe[i].active = true;
+            newe[i].droped = true;
           }
           if (el.below !== undefined) {
             el.below = check(el.below);
             for (let act of el.below) {
-              if (act.relative == currentUrl) {
+              if (act.active == true) {
                 newe[i].droped = true;
+                console.log("un", currentUrl);
               }
             }
           }
@@ -587,6 +574,18 @@ export default {
         }
       }
       return this.json;
+    },
+    nameUser_display: {
+      get() {
+        var string = this.nameUser.replace(/  +/g, " ");
+        if (string.length > 12) {
+          console.log("this.nameUser : ", string);
+          return string.substr(0, 12) + ".";
+        } else if (string.length > 0) {
+          return string;
+        }
+        return "User";
+      }
     }
   },
   methods: {
@@ -667,11 +666,13 @@ export default {
     width: 300px;
     padding: 1rem 2px;
     overflow-y: scroll;
+    .icone {
+      margin-right: 0.3em;
+    }
 
     &__dropdown {
       background-color: transparent;
       margin-top: 10px;
-      color: black;
       display: flex;
       flex-direction: column;
       font-weight: bold;
@@ -682,15 +683,17 @@ export default {
       }
       ul {
         list-style: none;
-        margin-left: -20px;
+        margin-left: -14px;
         margin-bottom: 0;
       }
       .drop-item {
-        color: black !important;
         padding: 5px 5px 7px 10px;
         display: flex;
+        align-items: center;
         &--active {
-          color: rgb(97, 220, 97);
+          a {
+            color: rgb(97, 220, 97);
+          }
         }
       }
     }
@@ -722,6 +725,12 @@ export default {
         max-width: 60px;
         max-height: 60px;
         height: auto;
+        background: #848484;
+        border: 1px solid #000;
+      }
+      .header {
+        width: 130px;
+        overflow: hidden;
       }
     }
     &__nav {
@@ -743,9 +752,7 @@ export default {
         margin-top: 2px;
         font-size: 18px;
       }
-      &:hover {
-        color: white;
-      }
+
       &__link {
         color: black;
         &:hover {
@@ -758,7 +765,7 @@ export default {
           color: rgb(75, 192, 75);
         }
       }
-      span {
+      .fa-angle-down {
         font-weight: 800;
         margin-right: 0.9rem;
         margin-left: 0.2rem;
@@ -783,6 +790,7 @@ export default {
     height: 64px;
     background: white;
     padding: 10px;
+    box-shadow: 1px 1px 5px #ccc;
   }
 }
 .side-close {
